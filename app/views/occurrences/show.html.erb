@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Event time:</b>
+  <%= @occurrence.event_time_id %>
+</p>
+
+<p>
+  <b>Start:</b>
+  <%= @occurrence.start %>
+</p>
+
+<p>
+  <b>End:</b>
+  <%= @occurrence.end %>
+</p>
+
+
+<%= link_to 'Edit', edit_occurrence_path(@occurrence) %> |
+<%= link_to 'Back', occurrences_path %>

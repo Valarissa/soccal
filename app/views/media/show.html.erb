@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Shareable:</b>
+  <%= @medium.shareable_id %>
+</p>
+
+<p>
+  <b>Shareable type:</b>
+  <%= @medium.shareable_type %>
+</p>
+
+<p>
+  <b>Shared:</b>
+  <%= @medium.shared_id %>
+</p>
+
+<p>
+  <b>Shared type:</b>
+  <%= @medium.shared_type %>
+</p>
+
+
+<%= link_to 'Edit', edit_medium_path(@medium) %> |
+<%= link_to 'Back', media_path %>

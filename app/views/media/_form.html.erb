@@ -1,0 +1,33 @@
+<%= form_for(@medium) do |f| %>
+  <% if @medium.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@medium.errors.count, "error") %> prohibited this medium from being saved:</h2>
+
+      <ul>
+      <% @medium.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :shareable_id %><br />
+    <%= f.number_field :shareable_id %>
+  </div>
+  <div class="field">
+    <%= f.label :shareable_type %><br />
+    <%= f.text_field :shareable_type %>
+  </div>
+  <div class="field">
+    <%= f.label :shared_id %><br />
+    <%= f.number_field :shared_id %>
+  </div>
+  <div class="field">
+    <%= f.label :shared_type %><br />
+    <%= f.text_field :shared_type %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
