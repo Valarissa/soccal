@@ -8,6 +8,9 @@ gem 'rails', '3.2.9'
 gem 'pg'
 gem 'unicorn'
 gem 'capistrano'
+gem 'jquery-rails'
+
+# Omniauth gem for session validation using third-party services.
 gem 'omniauth'
 
 group :assets do
@@ -16,8 +19,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
-
 group :development, :test do
   gem 'rspec-rails', '~> 2.12.0'
+  gem 'quiet_assets'
 end
