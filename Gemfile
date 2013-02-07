@@ -5,6 +5,8 @@ gem 'rails', '3.2.9'
 
 gem 'pg'
 gem 'jquery-rails'
+gem 'sass'
+gem 'haml'
 
 group :assets do
   gem 'sass-rails'
