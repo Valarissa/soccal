@@ -1,8 +1,6 @@
 Given /^there are no events$/ do
 end
 
-Event = Struct.new(:display)
-
 Given /^there are some events$/ do
   @events = [
     Event.new("Event 1"),

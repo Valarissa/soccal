@@ -1,5 +1,8 @@
-There are no events at this time.
+%h2 There are no events at this time.
 
 %section#events
-  .event Event 1
-  .event Event 2
+  %header
+    %h2 Events
+  %ul
+    - @events.each do |event|
+      %li.event= event.display
