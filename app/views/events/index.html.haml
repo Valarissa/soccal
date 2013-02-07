@@ -1,8 +1,23 @@
-%h2 There are no events at this time.
-
 %section#events
-  %header
-    %h2 Events
-  %ul
-    - @events.each do |event|
-      %li.event= event.display
+  %h2 There are no events listed at this time.
+
+  %section.upcoming
+    %header
+      %h2 Upcoming Events
+    %ul
+      - @events.upcoming_events do |event|
+        %li.event= event.display
+
+  %section.current
+    %header
+      %h2 Current Events
+    %ul
+      - @events.current_events do |event|
+        %li.event= event.display
+
+  %section.past
+    %header
+      %h2 Past Events
+    %ul
+      - @events.past_events do |event|
+        %li.event= event.display
