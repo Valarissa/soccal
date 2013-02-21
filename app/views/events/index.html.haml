@@ -5,19 +5,19 @@
     %header
       %h2 Upcoming Events
     %ul
-      - @events.upcoming_events do |event|
+      - Event.upcoming_events do |event|
         %li.event= event.display
 
   %section.current
     %header
       %h2 Current Events
     %ul
-      - @events.current_events do |event|
+      - Event.current_events do |event|
         %li.event= event.display
 
   %section.past
     %header
       %h2 Past Events
     %ul
-      - @events.past_events do |event|
+      - Event.past_events do |event|
         %li.event= event.display
