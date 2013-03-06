@@ -18,8 +18,12 @@ class DateRange
   end
 
   def cover?(event)
-    (event.start_date <= self.end_date and event.start_date >= self.start_date) or
-      (event.end_date >= self.start_date and event.end_date <= self.end_date)
+    event.within?(self)
+  end
+
+  def within?(date_range)
+    (date_range.start_date <= self.end_date and date_range.start_date >= self.start_date) or
+      (date_range.end_date >= self.start_date and date_range.end_date <= self.end_date)
   end
 
   def start_for_url
