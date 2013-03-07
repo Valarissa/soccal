@@ -2,12 +2,39 @@ class DateRange
   attr_accessor :start_date, :end_date
 
   def initialize(options={})
-    self.start_date = parse_time(options[:start_date] || options[:start])
-    self.end_date   = parse_time(options[:end_date]   || options[:end])
+    self.start_date = _parse_time(options[:start_date] || options[:start]  || options[:from])
+    self.end_date   = _parse_time(options[:end_date]   || options[:end]    || options[:to])
     raise ArgumentError "Start and End times needed" unless self.start_date and self.end_date
   end
 
-  def parse_time(time)
+  def cover?(event)
+    event.within?(self)
+  end
+
+  def to_param
+    return _start_for_url, _end_for_url
+  end
+
+  def within?(date_range)
+    _starts_within(date_range) or _ends_within(date_range) or _straddles(date_range)
+  end
+
+  private
+
+  def _end_for_url
+    _for_url(end_date)
+  end
+
+  def _ends_within(date_range)
+    self.end_date >= date_range.start_date and
+      self.end_date <= date_range.end_date
+  end
+
+  def _for_url(time)
+    time.strftime("%Y-%m-%d")
+  end
+
+  def _parse_time(time)
     case time
     when String then Time.zone.parse(time)
     when Fixnum then Time.zone.at(time)
@@ -17,24 +44,17 @@ class DateRange
     end
   end
 
-  def cover?(event)
-    event.within?(self)
-  end
-
-  def within?(date_range)
-    (date_range.start_date <= self.end_date and date_range.start_date >= self.start_date) or
-      (date_range.end_date >= self.start_date and date_range.end_date <= self.end_date)
-  end
-
-  def start_for_url
+  def _start_for_url
     _for_url(start_date)
   end
 
-  def end_for_url
-    _for_url(end_date)
+  def _starts_within(date_range)
+    self.start_date >= date_range.start_date and
+      self.start_date <= date_range.end_date
   end
 
-  def _for_url(time)
-    time.strftime("%Y-%m-%d")
+  def _straddles(date_range)
+    self.start_date <= date_range.start_date and
+      self.end_date >= date_range.end_date
   end
 end

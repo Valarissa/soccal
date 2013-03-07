@@ -12,7 +12,7 @@ describe EventList do
     end
   end
 
-  describe 'events' do
+  describe '#events' do
     it 'returns an empty array if there are no events' do
       EventList.events.should == []
     end
@@ -36,5 +36,43 @@ describe EventList do
         result.first.status.should == "#{status}"
       end
     end
+  end
+
+  describe '#within' do
+    it 'returns only those events that fall within the given DateRange' do
+      events = self.events
+      el = EventList.new.within(DateRange.new(from: 2.days.ago, to: 2.days.from_now))
+      el.events.should == [events[1]]
+    end
+  end
+
+  describe '#on_calendar' do
+    it 'returns only those events which belong to the given Calendar' do
+      events = self.events
+      events.first.calendar_id = 36
+      el = EventList.new.on_calendar(Calendar.new(id: 36))
+      el.events.should == [events[0]]
+    end
+  end
+
+  def events
+    [
+      event(date_range: DateRange.new(from: 7.days.ago, to: 6.days.ago)),
+      event,
+      event(date_range: DateRange.new(from: 6.days.from_now, to: 7.days.from_now))
+    ]
+  end
+
+  def event(options={})
+    Event.new(default_event_options.merge(options))
+  end
+
+  def default_event_options
+    {
+      status: 'current',
+      date_range: DateRange.new(:from => 1.day.ago, :to => 1.day.from_now),
+      calendar: Calendar.new,
+      display: 'Event'
+    }
   end
 end

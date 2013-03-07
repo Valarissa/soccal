@@ -7,8 +7,8 @@ class EventsController < ApplicationController
 
   def events
     list = EventList.new
-    if params[:start] and params[:end]
-      list = list.within(DateRange.new(start: params[:start], end: params[:end]))
+    if params[:from] and params[:to]
+      list = list.within(DateRange.new(from: params[:from], to: params[:to]))
     end
     if params[:calendar_id]
       list = list.on_calendar(Calendar.new(id: params[:calendar_id]))

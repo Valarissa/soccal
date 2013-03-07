@@ -34,7 +34,7 @@ When /^I go to the events page$/ do
 end
 
 When /^I go to the events page with the range$/ do
-  visit events_with_range_url(@date_range.start_for_url, @date_range.end_for_url)
+  visit events_within_date_range_url(*@date_range.to_param)
 end
 
 When /^I go to the events page for the calendar$/ do
