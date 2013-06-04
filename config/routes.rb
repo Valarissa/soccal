@@ -4,7 +4,7 @@ Soccal::Application.routes.draw do
         :as => 'events_within_date_range',
         :constraints => { :from => /\d{4}-\d{2}-\d{2}/,
                           :to => /\d{4}-\d{2}-\d{2}/ }
-  resources :calendar, :only => [:show] do
+  resources :calendars, :only => [:show] do
     resources :events, :only => [:index]
   end
 end

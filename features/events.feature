@@ -1,5 +1,4 @@
 Feature: I am able to see my events
-
   Scenario: There are no events to display
     Given there are no events
     When I go to the events page
