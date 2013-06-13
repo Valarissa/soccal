@@ -17,7 +17,7 @@ class Calendar
   end
 
   def self.day_as_date_range(date)
-    DateRange.day_as_date_range(date)
+    FullDay.new(date)
   end
 
   def self.month_of(date)
