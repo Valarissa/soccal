@@ -11,6 +11,14 @@ class DateRange
     event.within?(self)
   end
 
+  def duration
+    if start_date.beginning_of_day != end_date.beginning_of_day
+      (start_date..end_date)
+    else
+      start_date
+    end
+  end
+
   def to_param
     return _start_for_url, _end_for_url
   end

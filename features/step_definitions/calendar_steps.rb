@@ -20,3 +20,11 @@ Then /^I should see events in the calendar$/ do
     page.should have_css("##{FullDay.new(event.date_range.start_date).html_id} .event")
   end
 end
+
+Then /^I should see all the events in a given day$/ do
+  @calendar.events.each do |event|
+    event.duration.each do |day|
+      page.should have_css("##{FullDay.new(day).html_id} .event")
+    end
+  end
+end
