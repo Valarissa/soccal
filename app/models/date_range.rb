@@ -11,6 +11,14 @@ class DateRange
     event.within?(self)
   end
 
+  def self.day_as_date_range(date)
+    DateRange.new(start: date.beginning_of_day, end: date.end_of_day)
+  end
+
+  def html_id
+    "date_#{start_date.strftime("%Y-%m-%d")}"
+  end
+
   def to_param
     return _start_for_url, _end_for_url
   end

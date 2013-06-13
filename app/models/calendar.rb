@@ -16,12 +16,19 @@ class Calendar
     id
   end
 
-  def self.week_of(date)
-    (date.beginning_of_week(WeeksStartOn)..date.end_of_week(WeeksStartOn))
+  def self.day_as_date_range(date)
+    DateRange.day_as_date_range(date)
   end
 
   def self.month_of(date)
-    (week_of(month_start).first..week_of(month_end).last)
+    (week_of(month_start, false).first..week_of(month_end, false).last).map{|date| day_as_date_range(date)}
+  end
+
+  def self.week_of(date, as_date_ranges=true)
+    range = (date.beginning_of_week(WeeksStartOn)..date.end_of_week(WeeksStartOn))
+    range.map!(&:day_as_date_range).map{|date| day_as_date_range(date)} if as_date_ranges
+
+    range
   end
 
   private

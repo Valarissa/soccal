@@ -8,7 +8,7 @@ end
 
 Then /^I should see an empty calendar$/ do
   Calendar.month_of(Date.today).each do |day|
-    page.should have_css("#date_#{day.strftime('%Y-%m-%d')}")
+    page.should have_css("#date_#{day.start_date.strftime('%Y-%m-%d')}")
   end
 end
 
@@ -17,6 +17,6 @@ Then /^I should see events in the calendar$/ do
     page.should have_css("##{day.html_id}")
   end
   @calendar.events.each do |event|
-    page.should have_css("##{event.start_date.html_id} .event")
+    page.should have_css("##{event.date_range.html_id} .event")
   end
 end

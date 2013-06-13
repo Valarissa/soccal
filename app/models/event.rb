@@ -1,6 +1,6 @@
 class Event
   attr_accessor :status, :display, :date_range, :calendar_id
-  delegate :end_date, :start_date, :within?, :to => :date_range
+  delegate :cover?, :end_date, :start_date, :within?, :to => :date_range
 
   def initialize(options={})
     self.calendar_id =  options[:calendar_id]   || options[:calendar].try(:id)

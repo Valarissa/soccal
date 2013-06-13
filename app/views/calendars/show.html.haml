@@ -1,3 +1,6 @@
 #calendar
   - @date_range.each do |date|
     .date{:id => date.html_id}
+      - @calendar.events.each do |event|
+        -if event.cover?(date)
+          %li.event= event.display
