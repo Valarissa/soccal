@@ -12,6 +12,6 @@ Feature: I am able to see my calendars
 
   Scenario: The calendar shows all events for a day
     Given a calendar exists
-    And there are some events
+    And there are lots of events
     When I view the calendar
     Then I should see all the events in a given day

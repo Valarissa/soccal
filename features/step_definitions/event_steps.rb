@@ -21,6 +21,40 @@ Given /^there are some events$/ do
                                       end_date: 6.days.ago))
 end
 
+Given /^there are lots of events$/ do
+  EventList.clear
+  Event.new(calendar_id: 1,
+            status: "upcoming",
+            display: "Event 1",
+            date_range: DateRange.new(start_date: 6.days.from_now,
+                                      end_date: 7.days.from_now))
+  Event.new(calendar_id: 2,
+            status: "current",
+            display: "Event 2",
+            date_range: DateRange.new(start_date: Time.zone.now,
+                                      end_date: 1.day.from_now))
+  Event.new(calendar_id: 3,
+            status: "past",
+            display: "Event 3",
+            date_range: DateRange.new(start_date: 7.days.ago,
+                                      end_date: 6.days.ago))
+  Event.new(calendar_id: 4,
+            status: "upcoming",
+            display: "Event 4",
+            date_range: DateRange.new(start_date: 6.days.from_now,
+                                      end_date: 7.days.from_now))
+  Event.new(calendar_id: 5,
+            status: "current",
+            display: "Event 5",
+            date_range: DateRange.new(start_date: Time.zone.now,
+                                      end_date: 1.day.from_now))
+  Event.new(calendar_id: 6,
+            status: "past",
+            display: "Event 6",
+            date_range: DateRange.new(start_date: 7.days.ago,
+                                      end_date: 6.days.ago))
+end
+
 Given /^I specify a date range$/ do
   @date_range = DateRange.new(start_date: 5.days.ago, end_date: 5.days.from_now)
 end

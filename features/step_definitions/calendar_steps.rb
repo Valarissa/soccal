@@ -24,7 +24,7 @@ end
 Then /^I should see all the events in a given day$/ do
   @calendar.events.each do |event|
     event.duration.each do |day|
-      page.should have_css("##{FullDay.new(day).html_id} .event")
+      page.should have_css("##{day.html_id} .event")
     end
   end
 end
