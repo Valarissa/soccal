@@ -12,11 +12,7 @@ class DateRange
   end
 
   def duration
-    if start_date.beginning_of_day != end_date.beginning_of_day
-      (FullDay.new(start_date)..FullDay.new(end_date))
-    else
-      FullDay.new(start_date)
-    end
+    (FullDay.new(start_date)..FullDay.new(end_date))
   end
 
   def to_param
